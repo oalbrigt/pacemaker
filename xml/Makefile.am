@@ -272,6 +272,16 @@ versions.rng: pacemaker-$(CIB_max).rng Makefile.am
 	$(AM_V_at)echo '  </start>' >> $@
 	$(AM_V_SCHEMA)echo '</grammar>' >> $@
 
+schemas:
+	@if [ "${SCHEMAS}" = "ls" ] || [ "${SCHEMAS}" = "list" ]; then \
+		ls *.rng; \
+	elif [ -z "${SCHEMAS}" ] || [ -z "${NVER} ]; then \
+		echo "usage: make schemas SCHEMAS=\"<schema1 schema2 ...> NVER=<new-version>\"" ; \
+	else \
+		echo "Copy..."; \
+	fi
+
+
 .PHONY: diff
 diff: best-match.sh
 	@echo "#  Comparing changes in + since $(CIB_max)"

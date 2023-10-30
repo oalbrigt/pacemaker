@@ -98,6 +98,10 @@ core-clean:
 		$(MAKE) $(AM_MAKEFLAGS) -C $$subdir clean || exit 1; \
 	done
 
+.PHONY: schemas
+schemas:
+	$(MAKE) -C xml schemas || exit 1
+
 .PHONY: install-exec-local
 install-exec-local:
 	for DIR in $(ROOT_DIRS) $(DAEMON_R_DIRS); do				\
